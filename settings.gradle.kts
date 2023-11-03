@@ -16,3 +16,5 @@ pluginManagement {
 
 include("ok-workoutapp-acceptance")
 include("ok-workoutapp-api-v1-jackson")
+include("ok-workoutapp-common")
+include("ok-workoutapp-mappers-v1")

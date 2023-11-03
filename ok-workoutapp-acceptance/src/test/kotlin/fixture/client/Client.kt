@@ -7,7 +7,7 @@ package com.github.hamlet_rt.workoutapp.blackbox.fixture.client
 interface Client {
     /**
      * @param version версия АПИ (v1)
-     * @param path путь к ресурсу, имя топика и т.п. (ad/create)
+     * @param path путь к ресурсу, имя топика и т.п. (tng/create)
      * @param request тело сообщения в виде строки
      * @return тело ответа
      */

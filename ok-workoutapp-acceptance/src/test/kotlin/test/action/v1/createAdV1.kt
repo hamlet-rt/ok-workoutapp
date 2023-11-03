@@ -4,10 +4,10 @@ import com.github.hamlet_rt.workoutapp.blackbox.fixture.client.Client
 import io.kotest.assertions.withClue
 import io.kotest.matchers.should
 
-suspend fun Client.createAd(): Unit =
-    withClue("createAdV1") {
+suspend fun Client.createTng(): Unit =
+    withClue("createTngV1") {
         val response = sendAndReceive(
-            "ad/create", """
+            "tng/create", """
                 {
                     "name": "Bolt"
                 }
