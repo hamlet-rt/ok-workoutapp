@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.marketplace.blackbox.test.action.v1
+package com.github.hamlet_rt.workoutapp.blackbox.test.action.v1
 
 import io.kotest.matchers.Matcher
 import io.kotest.matchers.MatcherResult

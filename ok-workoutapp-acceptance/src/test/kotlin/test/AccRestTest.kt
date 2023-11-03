@@ -1,13 +1,12 @@
-package ru.otus.otuskotlin.marketplace.blackbox.test
+package com.github.hamlet_rt.workoutapp.blackbox.test
 
-import fixture.client.RestClient
 import io.kotest.core.annotation.Ignored
-import ru.otus.otuskotlin.marketplace.blackbox.docker.WiremockDockerCompose
-import ru.otus.otuskotlin.marketplace.blackbox.fixture.BaseFunSpec
-import ru.otus.otuskotlin.marketplace.blackbox.fixture.docker.DockerCompose
+import com.github.hamlet_rt.workoutapp.blackbox.docker.WiremockDockerCompose
+import com.github.hamlet_rt.workoutapp.blackbox.fixture.BaseFunSpec
+import com.github.hamlet_rt.workoutapp.blackbox.fixture.client.RestClient
 
 @Ignored
-open class AccRestTestBase(dockerCompose: DockerCompose) : BaseFunSpec(dockerCompose, {
+open class AccRestTestBase(dockerCompose: WiremockDockerCompose) : BaseFunSpec(dockerCompose, {
     val client = RestClient(dockerCompose)
 
     testApiV1(client)

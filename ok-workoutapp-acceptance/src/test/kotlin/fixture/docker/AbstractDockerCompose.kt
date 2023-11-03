@@ -1,9 +1,8 @@
-package ru.otus.otuskotlin.marketplace.blackbox.docker
+package com.github.hamlet_rt.workoutapp.blackbox.fixture.docker
 
 import io.ktor.http.*
 import mu.KotlinLogging
 import org.testcontainers.containers.DockerComposeContainer
-import ru.otus.otuskotlin.marketplace.blackbox.fixture.docker.DockerCompose
 import java.io.File
 
 private val log = KotlinLogging.logger {}

@@ -1,0 +1,459 @@
+openapi: 3.0.4
+info:
+  title: "Workoutapp ${VERSION_APP}"
+  description: Your personal trainer and workout companion. Create individual workouts, track your progress, and stay motivated on the path to better physical fitness.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/v1
+tags:
+  - name: tng
+    description: Добавление тренировки
+paths:
+  /tng/create:
+    post:
+      tags:
+        - tng
+      summary: Create tng
+      operationId: tngCreate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TngCreateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TngCreateResponse'
+  /tng/read:
+    post:
+      tags:
+        - tng
+      summary: Read tng
+      operationId: tngRead
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TngReadRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TngReadResponse'
+  /tng/update:
+    post:
+      tags:
+        - tng
+      summary: Update tng
+      operationId: tngUpdate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TngUpdateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TngUpdateResponse'
+  /tng/delete:
+    post:
+      tags:
+        - tng
+      summary: Delete tng
+      operationId: tngDelete
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TngDeleteRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TngDeleteResponse'
+  /tng/search:
+    post:
+      tags:
+        - tng
+      summary: Search tng
+      operationId: tngSearch
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TngSearchRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TngSearchResponse'
+  /tng/exercises:
+    post:
+      tags:
+        - tng
+      summary: Search exercises
+      operationId: tngExercises
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TngExercisesRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TngExercisesResponse'
+
+components:
+  schemas:
+
+    IRequest:
+      type: object
+      description: Базовый интерфейс для всех запросов
+      properties:
+        requestType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        requestId:
+          type: string
+          description: Идентификатор запроса для отладки
+      discriminator:
+        propertyName: requestType
+        mapping:
+          create: '#/components/schemas/TngCreateRequest'
+          read:   '#/components/schemas/TngReadRequest'
+          update: '#/components/schemas/TngUpdateRequest'
+          delete: '#/components/schemas/TngDeleteRequest'
+          search: '#/components/schemas/TngSearchRequest'
+          exercises: '#/components/schemas/TngExercisesRequest'
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        group:
+          type: string
+        field:
+          type: string
+        message:
+          type: string
+
+    ResponseResult:
+      type: string
+      enum:
+        - success
+        - error
+
+    IResponse:
+      type: object
+      description: Базовый интерфейс для всех ответов
+      properties:
+        responseType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        requestId:
+          type: string
+          description: Идентификатор запроса для отладки
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+
+      discriminator:
+        propertyName: responseType
+        mapping:
+          create: '#/components/schemas/TngCreateResponse'
+          read:   '#/components/schemas/TngReadResponse'
+          update: '#/components/schemas/TngUpdateResponse'
+          delete: '#/components/schemas/TngDeleteResponse'
+          search: '#/components/schemas/TngSearchResponse'
+          exercises: '#/components/schemas/TngExercisesResponse'
+          init: '#/components/schemas/TngInitResponse'
+
+
+    UserId:
+      type: string
+      description: Идентификатор пользователя
+    TngId:
+      type: string
+      description: Идентификатор тренировки
+    TngLock:
+      type: string
+      description: Версия оптимистичной блокировки
+
+    BaseTng:
+      type: object
+      description: Объект описывает свойства, одинаковые для create и update
+      properties:
+        title:
+          type: string
+          description: Заголовок тренировки
+        description:
+          type: string
+          description: Описание тренировки
+        TngType:
+          $ref: '#/components/schemas/TngType'
+        visibility:
+          $ref: '#/components/schemas/TngVisibility'
+
+    TngType:
+      type: string
+      description: 'Вид тренировки. Возможные значения: силовая тренировка, кардио тренировка, фукнциональная тренировка'
+      enum:
+        - power
+        - cardio
+        - functional
+
+    TngVisibility:
+      type: string
+      description: 'Тип видимости тренировки. Возможные значения: видит только владелец, только зарегистрированный в системе пользователь, видимо всем'
+      enum:
+        - ownerOnly
+        - registeredOnly
+        - public
+
+    TngInitResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+
+    TngCreateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseTng'
+
+    TngCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/TngRequestDebug'
+        - type: object
+          properties:
+            tng:
+              $ref: '#/components/schemas/TngCreateObject'
+
+    TngReadObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/TngId'
+
+    TngReadRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/TngRequestDebug'
+        - type: object
+          properties:
+            tng:
+              $ref: '#/components/schemas/TngReadObject'
+
+    TngUpdateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseTng'
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/TngId'
+            lock:
+              $ref: '#/components/schemas/TngLock'
+
+    TngUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/TngRequestDebug'
+        - type: object
+          properties:
+            tng:
+              $ref: '#/components/schemas/TngUpdateObject'
+
+    TngDeleteObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/TngId'
+            lock:
+              $ref: '#/components/schemas/TngLock'
+
+    TngDeleteRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/TngRequestDebug'
+        - type: object
+          properties:
+            tng:
+              $ref: '#/components/schemas/TngDeleteObject'
+
+    TngSearchFilter:
+      type: object
+      description: Набор фильтров для поиска
+      properties:
+        searchString:
+          type: string
+          description: Поисковая строка
+
+    TngSearchRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/TngRequestDebug'
+        - type: object
+          properties:
+            tngFilter:
+              $ref: '#/components/schemas/TngSearchFilter'
+
+    TngExercisesObject:
+      $ref: '#/components/schemas/TngReadObject'
+
+    TngExercisesRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/TngRequestDebug'
+        - type: object
+          properties:
+            tng:
+              $ref: '#/components/schemas/TngExercisesObject'
+
+    TngResponseObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseTng'
+        - type: object
+          description: Объект, который возвращается в ответе бэкенда
+          properties:
+            id:
+              $ref: '#/components/schemas/TngId'
+            ownerId:
+              $ref: '#/components/schemas/UserId'
+            lock:
+              $ref: '#/components/schemas/TngLock'
+            permissions:
+              type: array
+              uniqueItems: true
+              items:
+                $ref: '#/components/schemas/TngPermissions'
+
+    TngPermissions:
+      type: string
+      description: Доступы для клиента для операций над объявлением
+      enum:
+        - read
+        - update
+        - delete
+        - makeVisiblePublic
+        - makeVisibleOwn
+        - makeVisibleGroup
+
+    TngResponseSingle:
+      allOf:
+        - type: object
+          description: Ответ с одним объектом объявления
+          properties:
+            tng:
+              $ref: '#/components/schemas/TngResponseObject'
+
+    TngResponseMulti:
+      allOf:
+        - type: object
+          description: Список найденных объектов
+          properties:
+            tngs:
+              type: array
+              items:
+                $ref: '#/components/schemas/TngResponseObject'
+
+    TngCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/TngResponseSingle'
+
+    TngReadResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/TngResponseSingle'
+
+    TngUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/TngResponseSingle'
+
+    TngDeleteResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/TngResponseSingle'
+
+    TngSearchResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/TngResponseMulti'
+
+    TngExercisesResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/TngResponseSingle'
+        - $ref: '#/components/schemas/TngResponseMulti'
+
+    # STUBS ======================
+    TngRequestDebugMode:
+      type: string
+      enum:
+        - prod
+        - test
+        - stub
+
+    TngRequestDebug:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/TngDebug'
+
+    TngDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/TngRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/TngRequestDebugStubs'
+
+    TngRequestDebugStubs:
+      type: string
+      description: Перечисления всех стабов
+      enum:
+        - success
+        - notFound
+        - badId
+        - badTitle
+        - badDescription
+        - badVisibility
+        - cannotDelete
+        - badSearchString

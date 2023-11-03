@@ -1,17 +1,16 @@
-package fixture.client
+package com.github.hamlet_rt.workoutapp.blackbox.fixture.client
 
+import com.github.hamlet_rt.workoutapp.blackbox.docker.WiremockDockerCompose
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.okhttp.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import ru.otus.otuskotlin.marketplace.blackbox.fixture.client.Client
-import ru.otus.otuskotlin.marketplace.blackbox.fixture.docker.DockerCompose
 
 /**
  * Отправка запросов по http/rest
  */
-class RestClient(dockerCompose: DockerCompose) : Client {
+class RestClient(dockerCompose: WiremockDockerCompose) : Client {
     private val urlBuilder by lazy { dockerCompose.inputUrl }
     private val client = HttpClient(OkHttp)
     override suspend fun sendAndReceive(version: String, path: String, request: String): String {

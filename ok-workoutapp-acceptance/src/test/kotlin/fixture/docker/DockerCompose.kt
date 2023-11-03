@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.marketplace.blackbox.fixture.docker
+package com.github.hamlet_rt.workoutapp.blackbox.fixture.docker
 
 import io.ktor.http.URLBuilder
 

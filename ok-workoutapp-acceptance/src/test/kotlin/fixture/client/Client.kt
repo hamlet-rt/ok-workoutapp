@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.marketplace.blackbox.fixture.client
+package com.github.hamlet_rt.workoutapp.blackbox.fixture.client
 
 /**
  * Клиент к нашему приложению в докер-композе, который умеет отправлять запрос и получать ответ.

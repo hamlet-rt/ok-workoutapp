@@ -11,7 +11,7 @@ allprojects {
 }
 
 subprojects {
-    group = "com.github.hamlet-rt.workoutapp"
+    group = "com.github.hamlet_rt.workoutapp"
     version = "1.0-SNAPSHOT"
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

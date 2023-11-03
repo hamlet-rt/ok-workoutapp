@@ -1,8 +1,8 @@
-package ru.otus.otuskotlin.marketplace.blackbox.test.action.v1
+package com.github.hamlet_rt.workoutapp.blackbox.test.action.v1
 
+import com.github.hamlet_rt.workoutapp.blackbox.fixture.client.Client
 import io.kotest.assertions.withClue
 import io.kotest.matchers.should
-import ru.otus.otuskotlin.marketplace.blackbox.fixture.client.Client
 
 suspend fun Client.createAd(): Unit =
     withClue("createAdV1") {

@@ -1,7 +1,7 @@
-package ru.otus.otuskotlin.marketplace.blackbox.test.action.v1
+package com.github.hamlet_rt.workoutapp.blackbox.test.action.v1
 
+import com.github.hamlet_rt.workoutapp.blackbox.fixture.client.Client
 import mu.KotlinLogging
-import ru.otus.otuskotlin.marketplace.blackbox.fixture.client.Client
 
 private val log = KotlinLogging.logger {}
 
