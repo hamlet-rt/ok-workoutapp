@@ -1,9 +1,8 @@
-package ru.otus.otuskotlin.marketplace.blackbox.docker
+package com.github.hamlet_rt.workoutapp.blackbox.fixture.docker
 
 import io.ktor.http.*
 import mu.KotlinLogging
 import org.testcontainers.containers.DockerComposeContainer
-import ru.otus.otuskotlin.marketplace.blackbox.fixture.docker.DockerCompose
 import java.io.File
 
 private val log = KotlinLogging.logger {}
@@ -11,7 +10,7 @@ private val log = KotlinLogging.logger {}
 /**
  * apps - список приложений в docker-compose. Первое приложение - "главное", его url возвращается как inputUrl
  * (например ваш сервис при работе по rest или брокер сообщений при работе с брокером)
- * dockerComposeName - имя docker-compose файла (относительно ok-marketplace-acceptance/docker-compose)
+ * dockerComposeName - имя docker-compose файла (относительно ok-workoutapp-acceptance/docker-compose)
  */
 abstract class AbstractDockerCompose(
     private val apps: List<AppInfo>,

@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.marketplace.blackbox.fixture.client
+package com.github.hamlet_rt.workoutapp.blackbox.fixture.client
 
 /**
  * Клиент к нашему приложению в докер-композе, который умеет отправлять запрос и получать ответ.
@@ -7,7 +7,7 @@ package ru.otus.otuskotlin.marketplace.blackbox.fixture.client
 interface Client {
     /**
      * @param version версия АПИ (v1)
-     * @param path путь к ресурсу, имя топика и т.п. (ad/create)
+     * @param path путь к ресурсу, имя топика и т.п. (tng/create)
      * @param request тело сообщения в виде строки
      * @return тело ответа
      */

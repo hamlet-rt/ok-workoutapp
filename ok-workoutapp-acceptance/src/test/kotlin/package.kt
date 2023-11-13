@@ -1,1 +1,1 @@
-package ru.otus.otuskotlin.marketplace.blackbox
+package com.github.hamlet_rt.workoutapp.blackbox

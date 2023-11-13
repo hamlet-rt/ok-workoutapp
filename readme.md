@@ -28,3 +28,11 @@ Workoutapp -- ваш персональный тренер и компаньон
    2. [Интеграционная схема](./docs/04-architecture/02-integration.md)
    3. [Описание API](./docs/04-architecture/03-api.md)
 
+# Структура проекта
+
+1. Транспортные модели и мапперы
+   1. [specs](specs) - спецификации openapi
+   2. [ok-workoutapp-api-v1-jackson](ok-workoutapp-api-v1-jackson) используется jackson
+   3. [ok-workoutapp-mappers-v1](ok-workoutapp-mappers-v1) Мапперы из транспортных моделей во внутренние модели
+
+2. [ok-workoutapp-common](ok-workoutapp-common) Внутренние модели, общие хелперы и интерфейсы
