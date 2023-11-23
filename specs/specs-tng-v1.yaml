@@ -1,4 +1,4 @@
-openapi: 3.0.4
+openapi: 3.0.1
 info:
   title: "Workoutapp ${VERSION_APP}"
   description: Your personal trainer and workout companion. Create individual workouts, track your progress, and stay motivated on the path to better physical fitness.

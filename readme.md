@@ -35,4 +35,10 @@ Workoutapp -- ваш персональный тренер и компаньон
    2. [ok-workoutapp-api-v1-jackson](ok-workoutapp-api-v1-jackson) используется jackson
    3. [ok-workoutapp-mappers-v1](ok-workoutapp-mappers-v1) Мапперы из транспортных моделей во внутренние модели
 
-2. [ok-workoutapp-common](ok-workoutapp-common) Внутренние модели, общие хелперы и интерфейсы
+2. Бизнес-логика и внутренние модели
+   1. [ok-workoutapp-common](ok-workoutapp-common) Внутренние модели, общие хелперы и интерфейсы
+   2. [ok-workoutapp-stubs](ok-workoutapp-stubs) Стабы
+
+3. Приложения (точки входа)
+   1. [ok-workoutapp-app-common](ok-workoutapp-app-common) Общий код для приложений
+   2. [ok-workoutapp-app-spring](ok-workoutapp-app-spring) Spring

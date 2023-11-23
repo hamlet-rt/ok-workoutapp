@@ -19,4 +19,5 @@ data class WrkContext(
     var tngFilterRequest: WrkTngFilter = WrkTngFilter(),
     var tngResponse: WrkTng = WrkTng(),
     var tngsResponse: MutableList<WrkTng> = mutableListOf(),
-)
+) {
+}
