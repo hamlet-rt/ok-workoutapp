@@ -8,6 +8,7 @@ pluginManagement {
     val springDependencyManagementVersion: String by settings
     val pluginSpringVersion: String by settings
     val pluginJpa: String by settings
+    val bmuschkoVersion: String by settings
 
     plugins {
         kotlin("jvm") version kotlinVersion apply false
@@ -17,6 +18,10 @@ pluginManagement {
         id("io.spring.dependency-management") version springDependencyManagementVersion apply false
         kotlin("plugin.spring") version pluginSpringVersion apply false
         kotlin("plugin.jpa") version pluginJpa apply false
+
+        id("com.bmuschko.docker-java-application") version bmuschkoVersion apply false
+        id("com.bmuschko.docker-spring-boot-application") version bmuschkoVersion apply false
+        id("com.bmuschko.docker-remote-api") version bmuschkoVersion apply false
 
         id("org.openapi.generator") version openapiVersion apply false
     }
@@ -29,3 +34,4 @@ include("ok-workoutapp-mappers-v1")
 include("ok-workoutapp-stubs")
 include("ok-workoutapp-biz")
 include("ok-workoutapp-app-spring")
+include("ok-workoutapp-app-kafka")

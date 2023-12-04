@@ -42,3 +42,4 @@ Workoutapp -- ваш персональный тренер и компаньон
 3. Приложения (точки входа)
    1. [ok-workoutapp-app-common](ok-workoutapp-app-common) Общий код для приложений
    2. [ok-workoutapp-app-spring](ok-workoutapp-app-spring) Spring
+   3. [ok-workoutapp-app-kafka](ok-workoutapp-app-kafka) Kafka
