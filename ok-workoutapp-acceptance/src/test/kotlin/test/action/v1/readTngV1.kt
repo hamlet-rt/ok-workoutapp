@@ -18,7 +18,7 @@ suspend fun Client.readTng(id: String?): TngResponseObject = readTng(id) {
 }
 
 suspend fun <T> Client.readTng(id: String?, block: (TngReadResponse) -> T): T =
-    withClue("readAdV1: $id") {
+    withClue("readTngV1: $id") {
         id should beValidId
 
         val response = sendAndReceive(

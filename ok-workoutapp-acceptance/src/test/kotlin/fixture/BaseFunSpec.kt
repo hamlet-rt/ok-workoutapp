@@ -1,6 +1,7 @@
 package com.github.hamlet_rt.workoutapp.blackbox.fixture
 
-import com.github.hamlet_rt.workoutapp.blackbox.docker.WiremockDockerCompose
+import com.github.hamlet_rt.workoutapp.blackbox.docker.SpringDockerCompose
+import com.github.hamlet_rt.workoutapp.blackbox.fixture.docker.DockerCompose
 import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.core.test.TestCase
@@ -10,7 +11,7 @@ import io.kotest.core.test.TestCase
  * Основана на FunSpec
  */
 abstract class BaseFunSpec(
-    private val dockerCompose: WiremockDockerCompose,
+    private val dockerCompose: DockerCompose,
     body: FunSpec.() -> Unit) : FunSpec(body) {
     override suspend fun afterSpec(spec: Spec) {
         dockerCompose.stop()

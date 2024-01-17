@@ -11,7 +11,9 @@ dependencies {
     val kotlinLoggingJvmVersion: String by project
     val kafkaVersion: String by project
 
-    testImplementation(kotlin("stdlib"))
+    implementation(kotlin("stdlib"))
+
+    implementation(project(":ok-workoutapp-api-v1-jackson"))
 
     testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
     testImplementation("io.github.microutils:kotlin-logging-jvm:$kotlinLoggingJvmVersion")
@@ -38,6 +40,6 @@ tasks {
     withType<Test>().configureEach {
         useJUnitPlatform()
         dependsOn(":ok-workoutapp-app-spring:dockerBuildImage")
-        dependsOn(":ok-workoutapp-app-kafka:dockerBuildImage")
+//        dependsOn(":ok-workoutapp-app-kafka:dockerBuildImage")
     }
 }

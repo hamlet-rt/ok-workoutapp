@@ -27,8 +27,8 @@ fun FunSpec.testApiV1(client: Client, prefix: String = "") {
             client.updateTng(created.id, created.lock, TngUpdateObject(title = "Cardio workout"))
             client.readTng(created.id) {
                 // TODO раскомментировать, когда будет реальный реп
-                //it.ad?.title shouldBe "Selling Nut"
-                //it.ad?.description shouldBe someCreateAd.description
+                //it.tng?.title shouldBe "Selling Nut"
+                //it.tng?.description shouldBe someCreateTng.description
             }
         }
 

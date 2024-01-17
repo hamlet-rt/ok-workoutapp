@@ -42,5 +42,6 @@ val IResponse.tng: TngResponseObject?
         is TngReadResponse -> tng
         is TngUpdateResponse -> tng
         is TngDeleteResponse -> tng
+        is TngExercisesResponse -> tng
         else -> throw IllegalArgumentException("Invalid response type: ${this::class}")
     }
