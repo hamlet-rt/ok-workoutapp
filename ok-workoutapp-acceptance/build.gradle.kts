@@ -31,27 +31,14 @@ dependencies {
     testImplementation("io.ktor:ktor-client-okhttp-jvm:$ktorVersion")
 }
 
-//tasks {
-//    withType<Test>().configureEach {
-//        useJUnitPlatform()
-//    }
-//    test {
-//        systemProperty("kotest.framework.test.severity", "NORMAL")
-//    }
-//    create<Test>("test-strict") {
-//        systemProperty("kotest.framework.test.severity", "MINOR")
-//        group = "verification"
-//    }
-//}
 
 var severity: String = "MINOR"
 
 tasks {
     withType<Test>().configureEach {
         useJUnitPlatform()
-        dependsOn(":ok-marketplace-app-spring:dockerBuildImage")
-        dependsOn(":ok-marketplace-app-ktor:publishImageToLocalRegistry")
-        dependsOn(":ok-marketplace-app-rabbit:dockerBuildImage")
-        dependsOn(":ok-marketplace-app-kafka:dockerBuildImage")
+        dependsOn(":ok-workoutapp-app-spring:dockerBuildImage")
+        dependsOn(":ok-workoutapp-app-ktor:publishImageToLocalRegistry")
+        dependsOn(":ok-workoutapp-app-kafka:dockerBuildImage")
     }
 }
