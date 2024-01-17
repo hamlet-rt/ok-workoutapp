@@ -9,4 +9,8 @@ data class WrkTng(
     var visibility: WrkVisibility = WrkVisibility.NONE,
     var exerciseId: WrkExerciseId = WrkExerciseId.NONE,
     val permissionsClient: MutableSet<WrkTngPermissionClient> = mutableSetOf()
-)
+) {
+    fun deepCopy(): WrkTng = copy(
+        permissionsClient = permissionsClient.toMutableSet(),
+    )
+}

@@ -1,12 +1,25 @@
 package com.github.hamlet_rt.workoutapp.stubs
 
-import com.github.hamlet_rt.workoutapp.common.models.WrkTng
-import com.github.hamlet_rt.workoutapp.common.models.WrkTngId
-import com.github.hamlet_rt.workoutapp.common.models.WrkTngType
+import com.github.hamlet_rt.workoutapp.common.models.*
 import com.github.hamlet_rt.workoutapp.stubs.WrkTngStubBolts.TNG_POWER_FULL_BODY
 
 object WrkTngStub {
-    fun get(): WrkTng = TNG_POWER_FULL_BODY.copy()
+    fun get() = WrkTng(
+        id = WrkTngId("1"),
+        title = "Силовая тренировка",
+        description = "Силовая тренировка на все тело",
+        ownerId = WrkUserId("user-1"),
+        tngType = WrkTngType.POWER,
+        visibility = WrkVisibility.VISIBLE_PUBLIC,
+        permissionsClient = mutableSetOf(
+            WrkTngPermissionClient.READ,
+            WrkTngPermissionClient.UPDATE,
+            WrkTngPermissionClient.DELETE,
+            WrkTngPermissionClient.MAKE_VISIBLE_PUBLIC,
+            WrkTngPermissionClient.MAKE_VISIBLE_GROUP,
+            WrkTngPermissionClient.MAKE_VISIBLE_OWNER,
+        )
+    )
 
     fun prepareResult(block: WrkTng.() -> Unit): WrkTng = get().apply(block)
 
@@ -20,7 +33,7 @@ object WrkTngStub {
     )
 
     private fun wrkTngExercise(id: String, filter: String, type: WrkTngType) =
-        wrkTng(TNG_POWER_FULL_BODY, id = id, filter = filter, type = type)
+        wrkTng(get(), id = id, filter = filter, type = type)
 
     private fun wrkTng(base: WrkTng, id: String, filter: String, type: WrkTngType) = base.copy(
         id = WrkTngId(id),

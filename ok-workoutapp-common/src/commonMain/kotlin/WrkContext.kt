@@ -17,6 +17,13 @@ data class WrkContext(
     var timeStart: Instant = Instant.NONE,
     var tngRequest: WrkTng = WrkTng(),
     var tngFilterRequest: WrkTngFilter = WrkTngFilter(),
+
+    var tngValidating: WrkTng = WrkTng(),
+    var tngFilterValidating: WrkTngFilter = WrkTngFilter(),
+
+    var tngValidated: WrkTng = WrkTng(),
+    var tngFilterValidated: WrkTngFilter = WrkTngFilter(),
+
     var tngResponse: WrkTng = WrkTng(),
     var tngsResponse: MutableList<WrkTng> = mutableListOf(),
 ) {
