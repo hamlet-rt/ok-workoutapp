@@ -38,7 +38,6 @@ tasks {
     withType<Test>().configureEach {
         useJUnitPlatform()
         dependsOn(":ok-workoutapp-app-spring:dockerBuildImage")
-        dependsOn(":ok-workoutapp-app-ktor:publishImageToLocalRegistry")
         dependsOn(":ok-workoutapp-app-kafka:dockerBuildImage")
     }
 }
