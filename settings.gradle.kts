@@ -1,5 +1,4 @@
 rootProject.name = "ok-workoutapp"
-include("m1l1-hello")
 
 pluginManagement {
     val kotlinVersion: String by settings
