@@ -10,7 +10,7 @@ import com.github.hamlet_rt.workoutapp.blackbox.fixture.docker.DockerCompose
 open class AccRestTestBase(dockerCompose: DockerCompose) : BaseFunSpec(dockerCompose, {
     val client = RestClient(dockerCompose)
 
-    testApiV1(client)
+    testApiV1(client, "rest ")
 })
 class AccRestSpringTest : AccRestTestBase(SpringDockerCompose)
 // TODO class AccRestKtorTest : AccRestTestBase(KtorDockerCompose)
