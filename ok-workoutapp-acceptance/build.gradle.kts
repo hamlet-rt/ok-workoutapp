@@ -9,8 +9,11 @@ dependencies {
     val coroutinesVersion: String by project
     val logbackVersion: String by project
     val kotlinLoggingJvmVersion: String by project
+    val kafkaVersion: String by project
 
-    testImplementation(kotlin("stdlib"))
+    implementation(kotlin("stdlib"))
+
+    implementation(project(":ok-workoutapp-api-v1-jackson"))
 
     testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
     testImplementation("io.github.microutils:kotlin-logging-jvm:$kotlinLoggingJvmVersion")
@@ -20,6 +23,8 @@ dependencies {
     testImplementation("io.kotest:kotest-framework-datatest:$kotestVersion")
     testImplementation("io.kotest:kotest-property:$kotestVersion")
 
+    implementation("org.apache.kafka:kafka-clients:$kafkaVersion")
+
     testImplementation("org.testcontainers:testcontainers:$testcontainersVersion")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
 
@@ -28,15 +33,13 @@ dependencies {
     testImplementation("io.ktor:ktor-client-okhttp-jvm:$ktorVersion")
 }
 
+
+var severity: String = "MINOR"
+
 tasks {
     withType<Test>().configureEach {
         useJUnitPlatform()
-    }
-    test {
-        systemProperty("kotest.framework.test.severity", "NORMAL")
-    }
-    create<Test>("test-strict") {
-        systemProperty("kotest.framework.test.severity", "MINOR")
-        group = "verification"
+        dependsOn(":ok-workoutapp-app-spring:dockerBuildImage")
+//        dependsOn(":ok-workoutapp-app-kafka:dockerBuildImage")
     }
 }

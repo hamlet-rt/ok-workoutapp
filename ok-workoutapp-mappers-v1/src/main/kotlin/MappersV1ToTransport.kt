@@ -18,7 +18,7 @@ fun WrkContext.toTransportTng(): IResponse = when (val cmd = command) {
 fun WrkContext.toTransportCreate() = TngCreateResponse(
     responseType = "create",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
-    result = if (state == WrkState.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == WrkState.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     tng = tngResponse.toTransportTng()
 )
@@ -26,7 +26,7 @@ fun WrkContext.toTransportCreate() = TngCreateResponse(
 fun WrkContext.toTransportRead() = TngReadResponse(
     responseType = "read",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
-    result = if (state == WrkState.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == WrkState.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     tng = tngResponse.toTransportTng()
 )
@@ -34,7 +34,7 @@ fun WrkContext.toTransportRead() = TngReadResponse(
 fun WrkContext.toTransportUpdate() = TngUpdateResponse(
     responseType = "update",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
-    result = if (state == WrkState.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == WrkState.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     tng = tngResponse.toTransportTng()
 )
@@ -42,7 +42,7 @@ fun WrkContext.toTransportUpdate() = TngUpdateResponse(
 fun WrkContext.toTransportDelete() = TngDeleteResponse(
     responseType = "delete",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
-    result = if (state == WrkState.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == WrkState.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     tng = tngResponse.toTransportTng()
 )
@@ -50,7 +50,7 @@ fun WrkContext.toTransportDelete() = TngDeleteResponse(
 fun WrkContext.toTransportSearch() = TngSearchResponse(
     responseType = "search",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
-    result = if (state == WrkState.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == WrkState.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     tngs = tngsResponse.toTransportTng()
 )
@@ -58,7 +58,7 @@ fun WrkContext.toTransportSearch() = TngSearchResponse(
 fun WrkContext.toTransportExercises() = TngExercisesResponse(
     responseType = "offers",
     requestId = this.requestId.asString().takeIf { it.isNotBlank() },
-    result = if (state == WrkState.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == WrkState.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     tngs = tngsResponse.toTransportTng()
 )

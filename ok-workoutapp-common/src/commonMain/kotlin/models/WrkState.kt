@@ -4,4 +4,5 @@ enum class WrkState {
     NONE,
     RUNNING,
     FAILING,
+    FINISHING,
 }

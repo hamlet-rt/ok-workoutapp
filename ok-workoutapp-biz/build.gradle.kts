@@ -20,6 +20,7 @@ kotlin {
 
                 implementation(project(":ok-workoutapp-common"))
                 implementation(project(":ok-workoutapp-stubs"))
+                implementation(project(":ok-workoutapp-lib-cor"))
             }
         }
         @Suppress("UNUSED_VARIABLE")
