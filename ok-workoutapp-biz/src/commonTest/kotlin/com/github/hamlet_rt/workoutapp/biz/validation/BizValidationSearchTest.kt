@@ -1,7 +1,9 @@
 package com.github.hamlet_rt.workoutapp.biz.validation
 
+import com.github.hamlet_rt.workoutapp.backend.repository.inmemory.TngRepoStub
 import com.github.hamlet_rt.workoutapp.biz.WrkTngProcessor
 import com.github.hamlet_rt.workoutapp.common.WrkContext
+import com.github.hamlet_rt.workoutapp.common.WrkCorSettings
 import com.github.hamlet_rt.workoutapp.common.models.WrkCommand
 import com.github.hamlet_rt.workoutapp.common.models.WrkState
 import com.github.hamlet_rt.workoutapp.common.models.WrkTngFilter
@@ -16,9 +18,9 @@ import kotlin.test.assertNotEquals
 class BizValidationSearchTest {
 
     private val command = WrkCommand.SEARCH
-    private val processor by lazy { WrkTngProcessor() }
+    private val processor = WrkTngProcessor(WrkCorSettings(repoTest = TngRepoStub()))
 
-    @Test
+        @Test
     fun correctEmpty() = runTest {
         val ctx = WrkContext(
             command = command,
@@ -31,4 +33,5 @@ class BizValidationSearchTest {
         assertNotEquals(WrkState.FAILING, ctx.state)
     }
 }
+
 

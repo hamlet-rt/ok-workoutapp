@@ -8,9 +8,16 @@ data class WrkTng(
     var tngType: WrkTngType = WrkTngType.NONE,
     var visibility: WrkVisibility = WrkVisibility.NONE,
     var exerciseId: WrkExerciseId = WrkExerciseId.NONE,
+    var lock: WrkTngLock = WrkTngLock.NONE,
     val permissionsClient: MutableSet<WrkTngPermissionClient> = mutableSetOf()
 ) {
     fun deepCopy(): WrkTng = copy(
         permissionsClient = permissionsClient.toMutableSet(),
     )
+
+    fun isEmpty() = this == NONE
+
+    companion object {
+        val NONE = WrkTng()
+    }
 }

@@ -28,6 +28,12 @@ Workoutapp -- ваш персональный тренер и компаньон
    2. [Интеграционная схема](./docs/04-architecture/02-integration.md)
    3. [Описание API](./docs/04-architecture/03-api.md)
 
+5. Репозитарии
+   1. [ok-workoutapp-repo-in-memory](ok-workoutapp-repo-in-memory) Репозитарий в памяти
+   2. [ok-workoutapp-repo-stubs](ok-workoutapp-repo-stubs) Репозитарий-заглушка
+   3. [ok-workoutapp-repo-tests](ok-workoutapp-repo-tests) Проект с тестами для репозитариев
+   4. [ok-workoutapp-repo-postgresql](ok-workoutapp-repo-postgresql) Postgresql
+
 # Структура проекта
 
 1. Транспортные модели и мапперы

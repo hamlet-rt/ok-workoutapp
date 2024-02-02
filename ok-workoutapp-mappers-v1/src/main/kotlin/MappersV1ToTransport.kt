@@ -82,6 +82,7 @@ private fun WrkTng.toTransportTng(): TngResponseObject = TngResponseObject(
     tngType = tngType.toTransportTng(),
     visibility = visibility.toTransportTng(),
     permissions = permissionsClient.toTransportTng(),
+    lock = lock.takeIf { it != WrkTngLock.NONE }?.asString(),
 )
 
 private fun Set<WrkTngPermissionClient>.toTransportTng(): Set<TngPermissions>? = this

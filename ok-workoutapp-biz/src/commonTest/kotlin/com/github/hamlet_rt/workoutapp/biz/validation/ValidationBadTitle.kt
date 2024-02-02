@@ -24,6 +24,7 @@ fun validationTitleCorrect(command: WrkCommand, processor: WrkTngProcessor) = ru
             description = "abc",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)
@@ -44,6 +45,7 @@ fun validationTitleTrim(command: WrkCommand, processor: WrkTngProcessor) = runTe
             description = "abc",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)
@@ -64,6 +66,7 @@ fun validationTitleEmpty(command: WrkCommand, processor: WrkTngProcessor) = runT
             description = "abc",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)
@@ -86,6 +89,7 @@ fun validationTitleSymbols(command: WrkCommand, processor: WrkTngProcessor) = ru
             description = "abc",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)

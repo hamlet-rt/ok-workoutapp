@@ -1,6 +1,7 @@
 package com.github.hamlet_rt.workoutapp.springapp.api.v1.controller
 
 import com.github.hamlet_rt.workoutapp.api.v1.models.*
+import com.github.hamlet_rt.workoutapp.backend.repo.sql.RepoTngSQL
 import com.github.hamlet_rt.workoutapp.biz.WrkTngProcessor
 import com.github.hamlet_rt.workoutapp.common.WrkContext
 import com.github.hamlet_rt.workoutapp.mappers.v1.*
@@ -21,6 +22,9 @@ internal class TngControllerTest {
 
     @MockkBean(relaxUnitFun = true)
     private lateinit var processor: WrkTngProcessor
+
+    @MockkBean
+    private lateinit var repo: RepoTngSQL
 
     @Test
     fun createTng() = testStubTng(
