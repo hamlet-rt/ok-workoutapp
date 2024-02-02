@@ -130,6 +130,13 @@ class WrkTngProcessor(val settings: WrkCorSettings = WrkCorSettings()) {
                     validateLockProperFormat("Проверка формата lock")
                     finishAdValidation("Успешное завершение процедуры валидации")
                 }
+                chain {
+                    title = "Логика удаления"
+                    repoRead("Чтение объявления из БД")
+                    repoPrepareDelete("Подготовка объекта для удаления")
+                    repoDelete("Удаление объявления из БД")
+                }
+                prepareResult("Подготовка ответа")
             }
             operation("Поиск тренировок", WrkCommand.SEARCH) {
                 stubs("Обработка стабов") {

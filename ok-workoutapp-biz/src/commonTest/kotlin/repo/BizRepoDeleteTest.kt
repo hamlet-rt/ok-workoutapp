@@ -55,6 +55,7 @@ class BizRepoDeleteTest {
     fun repoDeleteSuccessTest() = runTest {
         val tngToUpdate = WrkTng(
             id = WrkTngId("123"),
+            lock = WrkTngLock("123-234-abc-ABC"),
         )
         val ctx = WrkContext(
             command = command,
