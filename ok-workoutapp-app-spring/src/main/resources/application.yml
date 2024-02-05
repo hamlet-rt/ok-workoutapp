@@ -18,3 +18,13 @@ springdoc:
     urls:
       - name: v1
         url: /specs-tng-v1.yaml
+
+prod-repository: ${PROD_REPOSITORY:test}
+
+sql:
+  url: ${SQL_URL:jdbc:postgresql://localhost:5432/workoutapp}
+  user: ${SQL_USER:postgres}
+  password: ${SQL_PASSWORD:workoutapp-pass}
+  schema: ${SQL_SCHEMA:workoutapp}
+  drop-database: ${SQL_DROP_DATABASE:false}
+  fast-migration: ${SQL_FAST_MIGRATION:true}

@@ -1,6 +1,8 @@
 package com.github.hamlet_rt.workoutapp.biz.validation
 
+import com.github.hamlet_rt.workoutapp.backend.repository.inmemory.TngRepoStub
 import com.github.hamlet_rt.workoutapp.biz.WrkTngProcessor
+import com.github.hamlet_rt.workoutapp.common.WrkCorSettings
 import com.github.hamlet_rt.workoutapp.common.models.WrkCommand
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.test.Test
@@ -9,7 +11,7 @@ import kotlin.test.Test
 class BizValidationUpdateTest {
 
     private val command = WrkCommand.UPDATE
-    private val processor by lazy { WrkTngProcessor() }
+    private val processor = WrkTngProcessor(WrkCorSettings(repoTest = TngRepoStub()))
 
     @Test fun correctTitle() = validationTitleCorrect(command, processor)
     @Test fun trimTitle() = validationTitleTrim(command, processor)
@@ -25,6 +27,12 @@ class BizValidationUpdateTest {
     @Test fun trimId() = validationIdTrim(command, processor)
     @Test fun emptyId() = validationIdEmpty(command, processor)
     @Test fun badFormatId() = validationIdFormat(command, processor)
+
+    @Test fun correctLock() = validationLockCorrect(command, processor)
+    @Test fun trimLock() = validationLockTrim(command, processor)
+    @Test fun emptyLock() = validationLockEmpty(command, processor)
+    @Test fun badFormatLock() = validationLockFormat(command, processor)
+
 
 
 }

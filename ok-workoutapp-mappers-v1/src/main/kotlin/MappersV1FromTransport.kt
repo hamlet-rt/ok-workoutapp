@@ -16,8 +16,9 @@ fun WrkContext.fromTransport(request: IRequest) = when (request) {
     else -> throw UnknownRequestClass(request.javaClass)
 }
 
-private fun String?.toAdId() = this?.let { WrkTngId(it) } ?: WrkTngId.NONE
-private fun String?.toTngWithId() = WrkTng(id = this.toAdId())
+private fun String?.toTngId() = this?.let { WrkTngId(it) } ?: WrkTngId.NONE
+private fun String?.toTngWithId() = WrkTng(id = this.toTngId())
+private fun String?.toTngLock() = this?.let { WrkTngLock(it) } ?: WrkTngLock.NONE
 private fun IRequest?.requestId() = this?.requestId?.let { WrkRequestId(it) } ?: WrkRequestId.NONE
 
 private fun TngDebug?.transportToWorkMode(): WrkWorkMode = when (this?.mode) {
@@ -50,10 +51,17 @@ fun WrkContext.fromTransport(request: TngCreateRequest) {
 fun WrkContext.fromTransport(request: TngReadRequest) {
     command = WrkCommand.READ
     requestId = request.requestId()
-    tngRequest = request.tng?.id.toTngWithId()
+    tngRequest = request.tng.toInternal()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
 }
+
+private fun TngReadObject?.toInternal(): WrkTng = if (this != null) {
+    WrkTng(id = id.toTngId())
+} else {
+    WrkTng.NONE
+}
+
 
 fun WrkContext.fromTransport(request: TngUpdateRequest) {
     command = WrkCommand.UPDATE
@@ -66,9 +74,18 @@ fun WrkContext.fromTransport(request: TngUpdateRequest) {
 fun WrkContext.fromTransport(request: TngDeleteRequest) {
     command = WrkCommand.DELETE
     requestId = request.requestId()
-    tngRequest = request.tng?.id.toTngWithId()
+    tngRequest = request.tng.toInternal()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
+}
+
+private fun TngDeleteObject?.toInternal(): WrkTng = if (this != null) {
+    WrkTng(
+        id = id.toTngId(),
+        lock = lock.toTngLock(),
+    )
+} else {
+    WrkTng.NONE
 }
 
 fun WrkContext.fromTransport(request: TngSearchRequest) {
@@ -99,11 +116,12 @@ private fun TngCreateObject.toInternal(): WrkTng = WrkTng(
 )
 
 private fun TngUpdateObject.toInternal(): WrkTng = WrkTng(
-    id = this.id.toAdId(),
+    id = this.id.toTngId(),
     title = this.title ?: "",
     description = this.description ?: "",
     tngType = this.tngType.fromTransport(),
     visibility = this.visibility.fromTransport(),
+    lock = lock.toTngLock(),
 )
 
 private fun TngVisibility?.fromTransport(): WrkVisibility = when (this) {

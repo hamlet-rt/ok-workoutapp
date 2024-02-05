@@ -1,8 +1,8 @@
 package com.github.hamlet_rt.workoutapp.biz.validation
-
 import com.github.hamlet_rt.workoutapp.biz.WrkTngProcessor
 import com.github.hamlet_rt.workoutapp.common.WrkContext
 import com.github.hamlet_rt.workoutapp.common.models.*
+import com.github.hamlet_rt.workoutapp.stubs.WrkTngStub
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlin.test.assertContains
@@ -15,13 +15,9 @@ fun validationIdCorrect(command: WrkCommand, processor: WrkTngProcessor) = runTe
         command = command,
         state = WrkState.NONE,
         workMode = WrkWorkMode.TEST,
-        tngRequest = WrkTng(
-            id = WrkTngId("123-234-abc-ABC"),
-            title = "abc",
-            description = "abc",
-            tngType = WrkTngType.POWER,
-            visibility = WrkVisibility.VISIBLE_PUBLIC,
-        ),
+        tngRequest = WrkTngStub.prepareResult {
+            lock = WrkTngLock("123-234-abc-ABC")
+        }
     )
     processor.exec(ctx)
     assertEquals(0, ctx.errors.size)
@@ -30,6 +26,8 @@ fun validationIdCorrect(command: WrkCommand, processor: WrkTngProcessor) = runTe
 
 @OptIn(ExperimentalCoroutinesApi::class)
 fun validationIdTrim(command: WrkCommand, processor: WrkTngProcessor) = runTest {
+    val tngRequest = WrkTngStub.get()
+    tngRequest.id = WrkTngId(" \n\t 666 \n\t ")
     val ctx = WrkContext(
         command = command,
         state = WrkState.NONE,
@@ -40,6 +38,7 @@ fun validationIdTrim(command: WrkCommand, processor: WrkTngProcessor) = runTest 
             description = "abc",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)
@@ -49,6 +48,8 @@ fun validationIdTrim(command: WrkCommand, processor: WrkTngProcessor) = runTest 
 
 @OptIn(ExperimentalCoroutinesApi::class)
 fun validationIdEmpty(command: WrkCommand, processor: WrkTngProcessor) = runTest {
+    val tngRequest = WrkTngStub.get()
+    tngRequest.id = WrkTngId("")
     val ctx = WrkContext(
         command = command,
         state = WrkState.NONE,
@@ -59,6 +60,7 @@ fun validationIdEmpty(command: WrkCommand, processor: WrkTngProcessor) = runTest
             description = "abc",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)
@@ -71,6 +73,8 @@ fun validationIdEmpty(command: WrkCommand, processor: WrkTngProcessor) = runTest
 
 @OptIn(ExperimentalCoroutinesApi::class)
 fun validationIdFormat(command: WrkCommand, processor: WrkTngProcessor) = runTest {
+    val adRequest = WrkTngStub.get()
+    adRequest.id = WrkTngId("!@#\$%^&*(),.{}")
     val ctx = WrkContext(
         command = command,
         state = WrkState.NONE,
@@ -81,6 +85,7 @@ fun validationIdFormat(command: WrkCommand, processor: WrkTngProcessor) = runTes
             description = "abc",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)

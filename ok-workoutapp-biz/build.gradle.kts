@@ -29,7 +29,15 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
 
+                implementation(project(":ok-workoutapp-repo-stubs"))
+                implementation(project(":ok-workoutapp-repo-tests"))
+                implementation(project(":ok-workoutapp-repo-in-memory"))
+
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+
+
+                implementation(project(":ok-workoutapp-repo-tests"))
+                implementation(project(":ok-workoutapp-repo-stubs"))
             }
         }
         @Suppress("UNUSED_VARIABLE")

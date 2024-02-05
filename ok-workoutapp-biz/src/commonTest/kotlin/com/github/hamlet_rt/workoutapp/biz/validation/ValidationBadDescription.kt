@@ -24,6 +24,7 @@ fun validationDescriptionCorrect(command: WrkCommand, processor: WrkTngProcessor
             description = "abc",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)
@@ -44,6 +45,7 @@ fun validationDescriptionTrim(command: WrkCommand, processor: WrkTngProcessor) =
             description = " \n\tabc \n\t",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)
@@ -64,6 +66,7 @@ fun validationDescriptionEmpty(command: WrkCommand, processor: WrkTngProcessor) 
             description = "",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)
@@ -86,6 +89,7 @@ fun validationDescriptionSymbols(command: WrkCommand, processor: WrkTngProcessor
             description = "!@#$%^&*(),.{}",
             tngType = WrkTngType.POWER,
             visibility = WrkVisibility.VISIBLE_PUBLIC,
+            lock = WrkTngLock("123-234-abc-ABC"),
         ),
     )
     processor.exec(ctx)
