@@ -43,7 +43,7 @@ class WrkTngProcessor(val settings: WrkCorSettings = WrkCorSettings()) {
                     validateDescriptionNotEmpty("Проверка, что описание не пусто")
                     validateDescriptionHasContent("Проверка символов")
 
-                    finishAdValidation("Завершение проверок")
+                    finishTngValidation("Завершение проверок")
                 }
                 chain {
                     title = "Логика сохранения"
@@ -65,7 +65,7 @@ class WrkTngProcessor(val settings: WrkCorSettings = WrkCorSettings()) {
                     validateIdNotEmpty("Проверка на непустой id")
                     validateIdProperFormat("Проверка формата id")
 
-                    finishAdValidation("Успешное завершение процедуры валидации")
+                    finishTngValidation("Успешное завершение процедуры валидации")
                 }
                 chain {
                     title = "Логика чтения"
@@ -102,7 +102,7 @@ class WrkTngProcessor(val settings: WrkCorSettings = WrkCorSettings()) {
                     validateDescriptionNotEmpty("Проверка на непустое описание")
                     validateDescriptionHasContent("Проверка на наличие содержания в описании")
 
-                    finishAdValidation("Успешное завершение процедуры валидации")
+                    finishTngValidation("Успешное завершение процедуры валидации")
                     chain {
                         title = "Логика сохранения"
                         repoRead("Чтение объявления из БД")
@@ -120,7 +120,7 @@ class WrkTngProcessor(val settings: WrkCorSettings = WrkCorSettings()) {
                     stubNoCase("Ошибка: запрошенный стаб недопустим")
                 }
                 validation {
-                    worker("Копируем поля в adValidating") {
+                    worker("Копируем поля в tngValidating") {
                         tngValidating = tngRequest.deepCopy() }
                     worker("Очистка id") { tngValidating.id = WrkTngId(tngValidating.id.asString().trim()) }
                     worker("Очистка lock") { tngValidating.lock = WrkTngLock(tngValidating.lock.asString().trim()) }
@@ -128,7 +128,7 @@ class WrkTngProcessor(val settings: WrkCorSettings = WrkCorSettings()) {
                     validateIdProperFormat("Проверка формата id")
                     validateLockNotEmpty("Проверка на непустой lock")
                     validateLockProperFormat("Проверка формата lock")
-                    finishAdValidation("Успешное завершение процедуры валидации")
+                    finishTngValidation("Успешное завершение процедуры валидации")
                 }
                 chain {
                     title = "Логика удаления"
@@ -146,16 +146,11 @@ class WrkTngProcessor(val settings: WrkCorSettings = WrkCorSettings()) {
                     stubNoCase("Ошибка: запрошенный стаб недопустим")
                 }
                 validation {
-                    worker("Копируем поля в adFilterValidating") { tngFilterValidating = tngFilterRequest.copy() }
+                    worker("Копируем поля в tngFilterValidating") { tngFilterValidating = tngFilterRequest.copy() }
 
-                    finishAdFilterValidation("Успешное завершение процедуры валидации")
+                    finishTngFilterValidation("Успешное завершение процедуры валидации")
                 }
-                chain {
-                    title = "Логика удаления"
-                    repoRead("Чтение объявления из БД")
-                    repoPrepareDelete("Подготовка объекта для удаления")
-                    repoDelete("Удаление объявления из БД")
-                }
+                repoSearch("Поиск объявления в БД по фильтру")
                 prepareResult("Подготовка ответа")
             }
         }.build()

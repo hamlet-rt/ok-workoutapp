@@ -5,7 +5,7 @@ import com.github.hamlet_rt.workoutapp.common.models.WrkState
 import com.github.hamlet_rt.workoutapp.cor.ICorChainDsl
 import com.github.hamlet_rt.workoutapp.cor.worker
 
-fun ICorChainDsl<WrkContext>.finishAdValidation(title: String) = worker {
+fun ICorChainDsl<WrkContext>.finishTngValidation(title: String) = worker {
     this.title = title
     on { state == WrkState.RUNNING }
     handle {
@@ -13,7 +13,7 @@ fun ICorChainDsl<WrkContext>.finishAdValidation(title: String) = worker {
     }
 }
 
-fun ICorChainDsl<WrkContext>.finishAdFilterValidation(title: String) = worker {
+fun ICorChainDsl<WrkContext>.finishTngFilterValidation(title: String) = worker {
     this.title = title
     on { state == WrkState.RUNNING }
     handle {

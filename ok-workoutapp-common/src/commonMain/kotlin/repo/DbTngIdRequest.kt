@@ -8,5 +8,5 @@ data class DbTngIdRequest(
     val id: WrkTngId,
     val lock: WrkTngLock = WrkTngLock.NONE,
 ) {
-    constructor(tng: WrkTng): this(tng.id)
+    constructor(tng: WrkTng): this(tng.id, tng.lock)
 }
