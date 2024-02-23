@@ -1,0 +1,165 @@
+### Create
+POST http://127.0.0.1:8080/v1/tng/create
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZC11c2VycyIsInN1YiI6InVzZXIxIiwiaXNzIjoiT3R1c0tvdGxpbiIsImdyb3VwcyI6WyJVU0VSIiwiVEVTVCJdfQ.cFOtMye2zfv8rvnAPpudAv5vrPbhVyR9VwS2DRmP67c
+
+{
+  "requestType": "create",
+  "requestId": "12345",
+  "tng": {
+    "title": "Силовая тренировка",
+    "description": "Силовая тренировка на все тело",
+    "ownerId": "9435",
+    "visibility": "public",
+    "tngType": "power"
+  },
+  "debug": {
+    "mode": "prod"
+  }
+}
+
+### Get unexisted ID
+POST http://127.0.0.1:8080/v1/tng/read
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZC11c2VycyIsImlzcyI6Ik90dXNLb3RsaW4iLCJncm91cHMiOlsiVVNFUiIsIlRFU1QiXSwiaWQiOiJ1c2VyMSJ9.fE8bj8ICmYpcAbD5uyqj4NxW41RLYFpezBhfbew1pZ4
+
+
+{
+  "requestType": "read",
+  "requestId": "12345",
+  "tng": {
+    "id": "51d139b5-6353-43b7-916b-da1b5d05c3a4"
+  },
+  "debug": {
+    "mode": "prod"
+  }
+}
+
+### Read With Existed id
+POST http://127.0.0.1:8080/v1/tng/read
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZC11c2VycyIsImlzcyI6Ik90dXNLb3RsaW4iLCJncm91cHMiOlsiVVNFUiIsIlRFU1QiXSwiaWQiOiJ1c2VyMSJ9.fE8bj8ICmYpcAbD5uyqj4NxW41RLYFpezBhfbew1pZ4
+
+
+{
+  "requestType": "read",
+  "requestId": "12345",
+  "tng": {
+    "id": "f94f8ee1-9cc8-42a9-983b-5a948698cb52"
+  },
+  "debug": {
+    "mode": "prod"
+  }
+}
+
+### Update
+POST http://localhost:8080/v1/tng/update
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZC11c2VycyIsImlzcyI6Ik90dXNLb3RsaW4iLCJncm91cHMiOlsiVVNFUiIsIlRFU1QiXSwiaWQiOiJ1c2VyMSJ9.fE8bj8ICmYpcAbD5uyqj4NxW41RLYFpezBhfbew1pZ4
+
+
+{
+  "requestType": "update",
+  "requestId": "666",
+  "tng": {
+    "tngType": "cardio",
+    "title": "Кардио тренировка",
+    "description": "Кардио тренировка",
+    "id": "51d139b5-6353-43b7-916b-da1b5d05c3a4",
+    "lock": "4cc731c4-f10e-4457-a7a7-eb88c7ef9e58",
+    "visibility": "ownerOnly"
+  },
+  "debug": {
+    "mode": "prod"
+  }
+}
+
+### Update with unexistedId
+POST http://localhost:8080/v1/tng/update
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZC11c2VycyIsImlzcyI6Ik90dXNLb3RsaW4iLCJncm91cHMiOlsiVVNFUiIsIlRFU1QiXSwiaWQiOiJ1c2VyMSJ9.fE8bj8ICmYpcAbD5uyqj4NxW41RLYFpezBhfbew1pZ4
+
+
+{
+  "requestType": "update",
+  "requestId": "666",
+  "tng": {
+    "id": "668"
+  },
+  "debug": {
+    "mode": "prod"
+  }
+}
+
+### Delete existed
+POST http://localhost:8080/v1/tng/delete
+Content-Type: application/json
+
+{
+  "requestType": "delete",
+  "requestId": "deleteId",
+  "tng": {
+    "id": "51d139b5-6353-43b7-916b-da1b5d05c3a4",
+    "lock": "834cb967-315d-4864-8f05-54bfee5d1ddf"
+  },
+  "debug": {
+    "mode": "prod"
+  }
+}
+
+### Delete non-existed
+POST http://localhost:8080/v1/tng/delete
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZC11c2VycyIsImlzcyI6Ik90dXNLb3RsaW4iLCJncm91cHMiOlsiVVNFUiIsIlRFU1QiXSwiaWQiOiJ1c2VyMSJ9.fE8bj8ICmYpcAbD5uyqj4NxW41RLYFpezBhfbew1pZ4
+
+
+{
+  "requestType": "delete",
+  "requestId": "deleteId_unknown",
+  "tng": {
+    "id": "unknownId",
+    "lock": "34fb3f79-6a6b-4154-9779-d3e6ac697a75"
+  },
+  "debug": {
+    "mode": "prod"
+  }
+}
+
+### Search by string
+POST http://localhost:8080/v1/tng/search
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZC11c2VycyIsImlzcyI6Ik90dXNLb3RsaW4iLCJncm91cHMiOlsiVVNFUiIsIlRFU1QiXSwiaWQiOiJ1c2VyMSJ9.fE8bj8ICmYpcAbD5uyqj4NxW41RLYFpezBhfbew1pZ4
+
+
+{
+  "requestType": "search",
+  "requestId": "search_1",
+  "tngFilter": {
+    "searchString": "тренировка"
+  },
+  "debug": {
+    "mode": "prod"
+  }
+}
+
+### Search by string with error
+POST http://localhost:8080/v1/tng/search
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZC11c2VycyIsImlzcyI6Ik90dXNLb3RsaW4iLCJncm91cHMiOlsiVVNFUiIsIlRFU1QiXSwiaWQiOiJ1c2VyMSJ9.fE8bj8ICmYpcAbD5uyqj4NxW41RLYFpezBhfbew1pZ4
+
+
+{
+  "requestType": "search",
+  "requestId": "search_1",
+  "tngFilter": {
+    "searchString": "ничего"
+  },
+  "debug": {
+    "mode": "prod"
+  }
+}
+
+
+
+
+
